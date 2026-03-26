@@ -1,0 +1,38 @@
+{
+    "device": {
+        "device_id": "Waveshare_Module",
+        "location": "Oil_Terminal_PSO_FSB",
+        "firmware_version": "1.0"
+    },
+
+    "network": {
+        "mode": "tcp_client",
+        "server_ip": "192.168.10.213",
+        "server_port": 5000,
+        "reconnect_intervel_ms": 5000,
+        "heartbeat_interval_ms": 2000
+    },
+
+    "digital_inputs": {
+        "entranceLB_status": 0,
+        "exitLB_status": 0,
+        "irSens_01_entranceWB": 0,
+        "irSens_02_entranceWB": 0,
+        "irSens_03_entranceWB": 0,
+        "irSens_01_exitWB": 0,
+        "irSens_02_exitWB": 0,
+        "irSens_03_exitWB": 0
+    },
+
+    "relay_outputs": {
+        "entranceLB": 0,
+        "exitLB": 0   
+    },
+
+    "events": [
+        "vehicle_detected",
+        "weight_entry",
+        "weight_exit",
+        "rfid_scanned"
+    ]
+}
