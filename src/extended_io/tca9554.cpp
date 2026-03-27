@@ -1,5 +1,8 @@
 #include "tca9554.h"
 
+// Digital Outputs Pin Config
+int output_pinConfig[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+
 /*****************************************************  Operation register REG   ****************************************************/   
 uint8_t Read_REG(uint8_t REG)                             // Read the value of the TCA9554PWR register REG
 {
@@ -105,3 +108,13 @@ void TCA9554PWR_Init(uint8_t PinMode, uint8_t PinState)                  // Set 
   Mode_EXIOS(PinMode);    
 }
 
+void update_outputs(int size)
+{
+  for(int i = 0; i < size; i++)
+  {
+    if(outputArr[i].value == 1)
+      digitalWrite(output_pinConfig[i], HIGH);
+    else
+      digitalWrite(output_pinConfig[i], LOW);
+  }
+}

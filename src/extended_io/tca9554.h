@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include "i2c_driver.h"
+#include "../tcp_server/tcp_server.h"
 
 /****************************************************** The macro defines the TCA9554PWR information ******************************************************/ 
 
@@ -22,6 +23,9 @@
 #define EXIO_PIN6   6
 #define EXIO_PIN7   7
 #define EXIO_PIN8   8
+
+// Digital Outputs Pin Config
+extern int output_pinConfig[8];
 
 /*****************************************************  Operation register REG   ****************************************************/   
 uint8_t Read_REG(uint8_t REG);                                                      // Read the value of the TCA9554PWR register REG
