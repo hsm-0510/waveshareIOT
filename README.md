@@ -264,37 +264,7 @@ These points are worth knowing before extending the project:
 
 The repository contains `config/protocol.json`, but the firmware does **not** load or parse it. It is currently acting more like a reference document than a live configuration source.
 
-### 2) Config JSON and implemented JSON do not match exactly
-
-There are naming differences between `protocol.json` and the actual keys in `tcp_server.cpp`.
-
-Examples:
-
-- config: `irSens_01_entranceWB`
-- code: `irSens01_entranceLB`
-
-- config: `entranceLB`
-- code: `control_entranceLB`
-
-So client software should follow the **code**, not the config file.
-
-### 3) The project is a TCP server, not a TCP client
-
-`protocol.json` says:
-
-```json
-"mode": "tcp_client"
-```
-
-But the actual firmware opens `EthernetServerCompat server(80)` and waits for incoming connections.
-
-### 4) Output reset behavior is incomplete
-
-`update_outputs()` only writes a channel when its value is `1`.
-
-That means the code currently does **not explicitly drive outputs low** when a command changes to `0`.
-
-### 5) JSON receive buffering needs cleanup
+### 2) JSON receive buffering needs cleanup
 
 `jsonRecvBuffer()` works like an early prototype and should be refactored:
 
@@ -303,18 +273,9 @@ That means the code currently does **not explicitly drive outputs low** when a c
 - it returns a constant string instead of the updated buffer,
 - `main.cpp` ignores the returned value.
 
-### 6) `serial_interface` is not integrated
+### 3) `serial_interface` is not integrated
 
 The serial interface folder is currently just a commented example and is not used by the firmware.
-
-### 7) There are a few code-style / portability issues
-
-Examples include:
-
-- `#include "host_interface\w5500_eth.h"` using a Windows-style backslash in `main.cpp`
-- `#include "I2C_Driver.h"` while the actual file name is `i2c_driver.h`
-
-Depending on toolchain / filesystem case sensitivity, these may need cleanup.
 
 ---
 
@@ -323,12 +284,9 @@ Depending on toolchain / filesystem case sensitivity, these may need cleanup.
 Good next steps for this project would be:
 
 1. parse runtime configuration from `config/protocol.json` or move all config into constants,
-2. unify JSON key naming across code and config,
-3. fix newline buffering and JSON parsing flow,
-4. add explicit output OFF handling,
-5. document the expected external TCP client behavior,
-6. add unit / integration tests for JSON parsing and I/O mapping,
-7. add a wiring diagram and hardware photos for deployment.
+2. fix newline buffering and JSON parsing flow,
+3. add unit / integration tests for JSON parsing and I/O mapping,
+4. add a wiring diagram and hardware photos for deployment.
 
 ---
 
@@ -347,11 +305,3 @@ If you are using this project as the base for a field device, start by validatin
 - digital input polarity,
 - client-side JSON message format,
 - required relay ON/OFF behavior.
-
----
-
-## License
-
-No license file is currently included in this repository.
-
-If you plan to share or reuse this project publicly, consider adding a license such as MIT, Apache-2.0, or GPL depending on your intended use.
