@@ -112,7 +112,6 @@ void update_outputs(int size)
 {
   for(int i = 0; i < size; i++)
   {
-    if(outputArr[i].value == 1)
-      Set_EXIO(output_pinConfig[i], outputArr[i].value);
+    Set_EXIO(output_pinConfig[i], outputArr[i].value);
   }
 }

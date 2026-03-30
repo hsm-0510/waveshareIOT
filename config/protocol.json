@@ -6,7 +6,7 @@
     },
 
     "network": {
-        "mode": "tcp_client",
+        "mode": "tcp_server",
         "server_ip": "192.168.10.213",
         "server_port": 5000,
         "reconnect_intervel_ms": 5000,
@@ -16,12 +16,12 @@
     "digital_inputs": {
         "entranceLB_status": 0,
         "exitLB_status": 0,
-        "irSens_01_entranceWB": 0,
-        "irSens_02_entranceWB": 0,
-        "irSens_03_entranceWB": 0,
-        "irSens_01_exitWB": 0,
-        "irSens_02_exitWB": 0,
-        "irSens_03_exitWB": 0
+        "irSens_01_entranceLB": 0,
+        "irSens_02_entranceLB": 0,
+        "irSens_03_entranceLB": 0,
+        "irSens_01_exitLB": 0,
+        "irSens_02_exitLB": 0,
+        "irSens_03_exitLB": 0
     },
 
     "relay_outputs": {
