@@ -43,3 +43,4 @@ bool Set_EXIOS(uint8_t PinState);                                               
 bool Set_Toggle(uint8_t Pin);                                                       // Flip the level of the TCA9554PWR Pin
 /********************************************************* TCA9554PWR Initializes the device ***********************************************************/  
 void TCA9554PWR_Init(uint8_t PinMode = 0x00, uint8_t PinState = 0x00);              // Set the seven pins to PinState state, for example :PinState=0x23, 0010 0011 State (the highest bit is not used) (Output mode or input mode) 0= Output mode 1= Input mode. The default value is output mode
+void update_outputs(int size);

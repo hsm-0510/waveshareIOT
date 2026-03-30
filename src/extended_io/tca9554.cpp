@@ -113,8 +113,6 @@ void update_outputs(int size)
   for(int i = 0; i < size; i++)
   {
     if(outputArr[i].value == 1)
-      digitalWrite(output_pinConfig[i], HIGH);
-    else
-      digitalWrite(output_pinConfig[i], LOW);
+      Set_EXIO(output_pinConfig[i], outputArr[i].value);
   }
 }

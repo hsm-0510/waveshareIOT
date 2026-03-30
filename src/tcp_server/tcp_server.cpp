@@ -35,7 +35,7 @@ StaticJsonDocument<256> send;
 StaticJsonDocument<256> recv;
 
 // Json doc send function
-void tcpSend(int size)
+void tcpSend(EthernetClient &client, int size)
 {
     send.clear();
     JsonObject inputs = send.createNestedObject("inputs");
@@ -43,10 +43,12 @@ void tcpSend(int size)
     {
         inputs[inputArr[i].key] = inputArr[i].value;
     }
+    serializeJson(send, client);
+    client.println();
 }
 
 // Json doc recieve function
-void tcpRecv(string jsonStr)
+void tcpRecv(String jsonStr)
 {
     recv.clear();
 
@@ -80,6 +82,34 @@ void tcpRecv(string jsonStr)
             }
         }
     }
+}
+
+// JSON Receive Function:
+String jsonRecvBuffer(EthernetClient client, String jsonBuffer)
+{
+    Serial.println("Entering While Loop");
+    char c;
+    while (client.available() && c != '\n')
+    {
+        Serial.println("Client is Available!");
+        Serial.println("Reading Data");
+        char c = client.read();
+        Serial.print("Read Some Data: ");
+        Serial.println(c);
+
+        if (c == '\n')
+        {
+            tcpRecv(jsonBuffer.c_str());
+            jsonBuffer = "";
+            Serial.println("Read Some jsonBuffer");
+        }
+        else
+        {
+            Serial.println("In Else Section");
+            jsonBuffer += c;
+        }
+    }
+    return " ";
 }
 
 // Functions gets the current value of the key in argument

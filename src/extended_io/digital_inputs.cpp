@@ -15,7 +15,7 @@ int pinConfig[] = {
 // Function to initialize the digital inputs
 void initialize_inputs()
 {
-    for(int i = 0; i < sizeof(pinConfig); i++)
+    for(int i = 0; i < 8; i++)
     {
         pinMode(pinConfig[i], INPUT);
     }

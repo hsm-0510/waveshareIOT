@@ -6,4 +6,4 @@ extern int pinConfig[8];
 
 // Function declarations
 void initialize_inputs();
-void update_inputs();
+void update_inputs(int size);
