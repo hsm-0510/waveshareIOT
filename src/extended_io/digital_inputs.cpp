@@ -29,8 +29,7 @@ void update_inputs(int size)
         set_key_value(
             inputArr[i].key,
             digitalRead(pinConfig[i]),
-            inputArr,
-            8
+            inputArr
         );
     }
 }

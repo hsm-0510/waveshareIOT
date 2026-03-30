@@ -21,13 +21,16 @@ keyValue outputArr[] = {
 keyValue statusArr[] = {
     {"vehicle_alignment_status", 0},
     {"driver_absence_status", 0},
-    {"entrance_weight", 0},
-    {"exit_weight", 0},
-    {"entrance_weight_status", 0},
-    {"exit_weight_status", 0},
-    {"rfid_scan_status", 0},
+    {"gross_weight_WB1", 0},
+    {"gross_weight_WB2", 0},
+    {"weight_capture_status1", 0},
+    {"weight_capture_status2", 0},
+    {"rfid_scan_status1", 0},
+    {"rfid_scan_status2", 0},
     {"entrance_print_status", 0},
-    {"exit_print_status", 0}
+    {"exit_print_status", 0},
+    {"kiosk_button_entrance", 0},
+    {"kiosk_button_exit", 0}
 };
 
 // Json Docs
@@ -35,9 +38,10 @@ StaticJsonDocument<256> send;
 StaticJsonDocument<256> recv;
 
 // Json doc send function
-void tcpSend(EthernetClient &client, int size)
+void tcpSend(EthernetClient &client)
 {
     send.clear();
+    size_t size = sizeof(inputArr) / sizeof(inputArr[0]);
     JsonObject inputs = send.createNestedObject("inputs");
     for(int i = 0; i < size; i++)
     {
@@ -61,7 +65,9 @@ void tcpRecv(String jsonStr)
     if (recv.containsKey("outputs")) {
         JsonObject outputs = recv["outputs"];
 
-        for (int i = 0; i < 2; i++) {
+        size_t size = sizeof(outputArr) / sizeof(outputArr[0]);
+
+        for (int i = 0; i < size; i++) {
             const char* key = outputArr[i].key;
 
             if (outputs.containsKey(key)) {
@@ -74,7 +80,9 @@ void tcpRecv(String jsonStr)
     if (recv.containsKey("status")) {
         JsonObject status = recv["status"];
 
-        for (int i = 0; i < 9; i++) {
+        size_t size = sizeof(statusArr) /sizeof(statusArr[0]);
+
+        for (int i = 0; i < size; i++) {
             const char* key = statusArr[i].key;
 
             if (status.containsKey(key)) {
@@ -113,8 +121,10 @@ String jsonRecvBuffer(EthernetClient client, String jsonBuffer)
 }
 
 // Functions gets the current value of the key in argument
-int get_key_value(const char* search, keyValue array[], int size)
+int get_key_value(const char* search, keyValue array[])
 {
+    size_t size = sizeof(array) / sizeof(array[0]);
+
     for(int i = 0; i < size; i++)
     {
         if (strcmp(array[i].key, search) == 0)
@@ -126,8 +136,10 @@ int get_key_value(const char* search, keyValue array[], int size)
 }
 
 // Function sets the value of the key from the argument
-void set_key_value(const char* setKey, int setValue, keyValue array[], int size)
+void set_key_value(const char* setKey, int setValue, keyValue array[])
 {
+    size_t size = sizeof(array) / sizeof(array[0]);
+
     for(int i = 0; i < size; i++)
     {
         if (strcmp(array[i].key, setKey) == 0)

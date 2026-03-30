@@ -87,7 +87,7 @@ void loop() {
 
       // Send Json Doc, 8 digital input statuses
       Serial.println("Sending JSON Doc");
-      tcpSend(client, 8);
+      tcpSend(client);
       Serial.println("Sent JSON Doc");
 
       //Delay

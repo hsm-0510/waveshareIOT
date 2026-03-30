@@ -17,7 +17,7 @@ extern keyValue inputArr[8];
 // Digital Outputs Key/Value Pairs
 extern keyValue outputArr[2];
 // System Statuses Key/Value Pairs
-extern keyValue statusArr[9];
+extern keyValue statusArr[12];
 
 
 // Json docs
@@ -25,8 +25,8 @@ extern StaticJsonDocument<256> send;
 extern StaticJsonDocument<256> recv;
 
 // Function declarations
-void tcpSend(EthernetClient &client, int size);
+void tcpSend(EthernetClient &client);
 void tcpRecv(String jsonStr);
-int get_key_value(const char* search, keyValue array[], int size);
-void set_key_value(const char* setKey, int setValue, keyValue array[], int size);
+int get_key_value(const char* search, keyValue array[]);
+void set_key_value(const char* setKey, int setValue, keyValue array[]);
 String jsonRecvBuffer(EthernetClient client, String jsonBuffer);
