@@ -15,7 +15,7 @@ struct keyValue{
 // Digital Inputs Key/Value Pairs
 extern keyValue inputArr[8];
 // Digital Outputs Key/Value Pairs
-extern keyValue outputArr[2];
+extern keyValue outputArr[8];
 // System Statuses Key/Value Pairs
 extern keyValue statusArr[12];
 

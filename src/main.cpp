@@ -63,9 +63,9 @@ void loop() {
 
       // Update Outputs, 2 relay outputs control
       Serial.println("Updating Outputs");
-      update_outputs(2);
+      update_outputs(8);
       Serial.println("Updated Outputs: ");
-      for(int i = 0; i < 2; i++)
+      for(int i = 0; i < 8; i++)
       {
         Serial.print(outputArr[i].value);
         Serial.print(" ");

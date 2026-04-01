@@ -16,6 +16,12 @@ keyValue inputArr[] = {
 keyValue outputArr[] = {
     {"control_entranceLB", 0},
     {"control_exitLB", 0},
+    {"channel_3", 0},
+    {"channel_4", 0},
+    {"channel_5", 0},
+    {"channel_6", 0},
+    {"channel_7", 0},
+    {"channel_8", 0}
 };
 // System Statuses Key/Value Pairs
 keyValue statusArr[] = {
