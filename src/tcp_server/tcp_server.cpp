@@ -25,10 +25,10 @@ keyValue statusArr[] = {
     {"gross_weight_WB2", 0},
     {"weight_capture_status1", 0},
     {"weight_capture_status2", 0},
-    {"rfid_scan_status1", 0},
-    {"rfid_scan_status2", 0},
-    {"entrance_print_status", 0},
-    {"exit_print_status", 0},
+    {"scan_status_rfid1", 0},
+    {"scan_status_rfid2", 0},
+    {"print_status_entrance", 0},
+    {"print_status_exit", 0},
     {"kiosk_button_entrance", 0},
     {"kiosk_button_exit", 0}
 };
