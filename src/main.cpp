@@ -53,7 +53,7 @@ void loop() {
       //tcpRecv(jsonBuffer);
       //Serial.println("Updated Arrays");
       Serial.println("Status Array: ");
-      for(int i = 0; i < 9; i++)
+      for(int i = 0; i < 12; i++)
       {
         Serial.print(statusArr[i].value);
         Serial.print(" ");

@@ -25,16 +25,16 @@ keyValue outputArr[] = {
 };
 // System Statuses Key/Value Pairs
 keyValue statusArr[] = {
-    {"vehicle_alignment_status", 0},
-    {"driver_absence_status", 0},
-    {"gross_weight_WB1", 0},
-    {"gross_weight_WB2", 0},
-    {"weight_capture_status1", 0},
-    {"weight_capture_status2", 0},
+    {"vehicle_alignment_status_camera", 0},
+    {"driver_absence_status_camera", 0},
+    {"gross_weight_entranceWB1", 0},
+    {"gross_weight_exitWB2", 0},
+    {"weight_capture_entranceControl1", 0},
+    {"weight_capture_exitControl2", 0},
     {"scan_status_rfid1", 0},
     {"scan_status_rfid2", 0},
-    {"print_status_entrance", 0},
-    {"print_status_exit", 0},
+    {"kiosk_print_control_entrance", 0},
+    {"kiosk_print_control_exit", 0},
     {"kiosk_button_entrance", 0},
     {"kiosk_button_exit", 0}
 };
@@ -47,7 +47,7 @@ StaticJsonDocument<256> recv;
 void tcpSend(EthernetClient &client)
 {
     send.clear();
-    size_t size = sizeof(inputArr) / sizeof(inputArr[0]);
+    int size = 8;
     JsonObject inputs = send.createNestedObject("inputs");
     for(int i = 0; i < size; i++)
     {
@@ -71,7 +71,7 @@ void tcpRecv(String jsonStr)
     if (recv.containsKey("outputs")) {
         JsonObject outputs = recv["outputs"];
 
-        size_t size = sizeof(outputArr) / sizeof(outputArr[0]);
+        int size = 8;
 
         for (int i = 0; i < size; i++) {
             const char* key = outputArr[i].key;
@@ -86,7 +86,7 @@ void tcpRecv(String jsonStr)
     if (recv.containsKey("status")) {
         JsonObject status = recv["status"];
 
-        size_t size = sizeof(statusArr) /sizeof(statusArr[0]);
+        int size = 12;
 
         for (int i = 0; i < size; i++) {
             const char* key = statusArr[i].key;
