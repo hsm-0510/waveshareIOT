@@ -46,15 +46,24 @@ StaticJsonDocument<256> recv;
 // Json doc send function
 void tcpSend(EthernetClient &client)
 {
+    static String lastSentPayload = "";
     send.clear();
-    int size = 8;
+    const int size = 8;
     JsonObject inputs = send.createNestedObject("inputs");
+    
     for(int i = 0; i < size; i++)
     {
         inputs[inputArr[i].key] = inputArr[i].value;
     }
-    serializeJson(send, client);
-    client.println();
+    
+    String currentPayload;
+    serializeJson(send, currentPayload);
+
+    if (currentPayload != lastSentPayload)
+    {
+        client.println(currentPayload);
+        lastSentPayload = currentPayload;
+    }
 }
 
 // Json doc recieve function

@@ -11,6 +11,9 @@ EthernetClient client;
 //Buffer for incoming JSON
 String jsonBuffer = "";
 
+// Input Record for Change
+int lastInputArr[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+
 void setup() {
   Serial.begin(115200);
   delay(1000);
@@ -76,6 +79,7 @@ void loop() {
       // Update Inputs, 8 digital input statuses
       Serial.println("Updating Inputs");
       update_inputs(8);
+      
       Serial.println("Updated Inputs: ");
       for(int i = 0; i < 8; i++)
       {
@@ -87,9 +91,20 @@ void loop() {
 
       // Send Json Doc, 8 digital input statuses
       Serial.println("Sending JSON Doc");
-      tcpSend(client);
-      Serial.println("Sent JSON Doc");
-
+      for (int i = 0; i < 8; i++)
+      {
+        if (lastInputArr[i] != inputArr[i].value)
+        {
+          tcpSend(client);
+          Serial.println("Sent JSON Doc");
+          lastInputArr[i] = inputArr[i].value;
+        }
+        else
+        {
+          Serial.println("[SENT NOTHING]");
+        }
+      }
+      
       //Delay
       Serial.println("========================================");
       delay(500);
