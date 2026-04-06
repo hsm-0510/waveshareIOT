@@ -17,7 +17,7 @@ void initialize_inputs()
 {
     for(int i = 0; i < 8; i++)
     {
-        pinMode(pinConfig[i], INPUT);
+        pinMode(pinConfig[i], INPUT_PULLUP);
     }
 }
 
@@ -28,8 +28,12 @@ void update_inputs(int size)
     {
         set_key_value(
             inputArr[i].key,
-            digitalRead(pinConfig[i]),
+            abs(digitalRead(pinConfig[i]) - 1),
             inputArr
         );
+        // Serial.print("Reading input: ");
+        // Serial.print(i);
+        // Serial.print(" : ");
+        // Serial.println(digitalRead(pinConfig[i]));
     }
 }

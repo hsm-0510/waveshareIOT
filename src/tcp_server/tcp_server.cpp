@@ -144,7 +144,7 @@ int get_key_value(const char* search, keyValue array[])
 // Function sets the value of the key from the argument
 void set_key_value(const char* setKey, int setValue, keyValue array[])
 {
-    size_t size = sizeof(array) / sizeof(array[0]);
+    int size = 8;
 
     for(int i = 0; i < size; i++)
     {
