@@ -14,10 +14,10 @@ keyValue inputArr[] = {
 };
 // Digital Outputs Key/Value Pairs
 keyValue outputArr[] = {
-    {"control_entranceLB", 0},
-    {"control_exitLB", 0},
-    {"channel_3", 0},
-    {"channel_4", 0},
+    {"open_entranceLB", 0},
+    {"close_entranceLB", 0},
+    {"open_exitLB", 0},
+    {"close_exitLB", 0},
     {"channel_5", 0},
     {"channel_6", 0},
     {"channel_7", 0},
@@ -25,8 +25,10 @@ keyValue outputArr[] = {
 };
 // System Statuses Key/Value Pairs
 keyValue statusArr[] = {
-    {"vehicle_alignment_status_camera", 0},
-    {"driver_absence_status_camera", 0},
+    {"vehicle_alignment_status_camera_ent", 0},
+    {"driver_absence_status_camera_ent", 0},
+    {"vehicle_alignment_status_camera_ext", 0},
+    {"driver_absence_status_camera_ext", 0},
     {"gross_weight_entranceWB1", 0},
     {"gross_weight_exitWB2", 0},
     {"weight_capture_entranceControl1", 0},
@@ -95,7 +97,7 @@ void tcpRecv(String jsonStr)
     if (recv.containsKey("status")) {
         JsonObject status = recv["status"];
 
-        int size = 12;
+        int size = 14;
 
         for (int i = 0; i < size; i++) {
             const char* key = statusArr[i].key;

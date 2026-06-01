@@ -17,7 +17,7 @@ extern keyValue inputArr[8];
 // Digital Outputs Key/Value Pairs
 extern keyValue outputArr[8];
 // System Statuses Key/Value Pairs
-extern keyValue statusArr[12];
+extern keyValue statusArr[14];
 
 
 // Json docs
