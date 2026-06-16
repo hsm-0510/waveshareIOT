@@ -2,15 +2,25 @@
 #include "../extended_io/digital_inputs.h"
 
 // Digital Inputs Key/Value Pairs
+// keyValue inputArr[] = {
+//     {"entranceLB_status", 0},
+//     {"exitLB_status", 0},
+//     {"irSens_01_entranceLB", 0},
+//     {"irSens_02_entranceLB", 0},
+//     {"irSens_03_entranceLB", 0},
+//     {"irSens_01_exitLB", 0},
+//     {"irSens_02_exitLB", 0},
+//     {"irSens_03_exitLB", 0},
+// };
 keyValue inputArr[] = {
-    {"entranceLB_status", 0},
-    {"exitLB_status", 0},
-    {"irSens_01_entranceLB", 0},
-    {"irSens_02_entranceLB", 0},
+    {"irSens_01_02_entranceLB", 0},
     {"irSens_03_entranceLB", 0},
-    {"irSens_01_exitLB", 0},
-    {"irSens_02_exitLB", 0},
+    {"irSens_01_02_exitLB", 0},
     {"irSens_03_exitLB", 0},
+    {"entranceLB_open_status", 0},
+    {"entranceLB_close_status", 0},
+    {"exitLB_open_status", 0},
+    {"exitLB_close_status", 0}
 };
 // Digital Outputs Key/Value Pairs
 keyValue outputArr[] = {
